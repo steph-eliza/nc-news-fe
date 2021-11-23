@@ -9,8 +9,10 @@ function App() {
     <div className="App">
       <Nav />
       <Routes>
-        <Route path="/articles" element={ArticleList} />
-        <Route path="/articles/:article_id" element={ArticlePage} />
+        <Route path="/" element={<ArticleList />} />
+        <Route path="/articles" element={<ArticleList />} />
+        <Route path="/articles/:topic_slug" element={<ArticleList />} />
+        <Route path="/articles/:article_id" element={<ArticlePage />} />
       </Routes>
     </div>
   );
