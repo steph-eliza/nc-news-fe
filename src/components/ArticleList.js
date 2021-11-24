@@ -6,6 +6,7 @@ import SortForm from "./SortForm";
 
 const ArticleList = ({topics}) => {
   // takes the parameter from the end of the url
+  console.log(useParams(), "        <-- useParams");
   const {topic_slug} = useParams();
   console.log(topic_slug, "       <-- topicslug in articles");
   const [allArticles, setAllArticles] = useState([]);
