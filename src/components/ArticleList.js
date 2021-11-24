@@ -82,10 +82,11 @@ const ArticleList = ({topics}) => {
           return (
             <div className="articleTile" key={article.article_id}>
               <h3>{article.title}</h3>
-              <p>{article.topic}</p>
-              <p>{article.author}</p>
-              <p>{article.votes}</p>
-              <p>{article.created_at}</p>
+              <p>Topic: {article.topic}</p>
+              <p>By: {article.author}</p>
+              <p>Votes: {article.votes}</p>
+              <p>Posted: {article.created_at}</p>
+              <p>Comments: {article.comment_count}</p>
             </div>
           );
         })}

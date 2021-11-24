@@ -21,7 +21,6 @@ export const getArticles = async (topic, sort_by, order) => {
     const res = await newsApi.get(
       `/articles?${topicQuery}${sortQuery}${orderQuery}`
     );
-    console.log(res, "        <-- res in api");
     return res.data.allArticles;
   }
 };
