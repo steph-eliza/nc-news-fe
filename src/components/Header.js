@@ -1,5 +1,4 @@
 const Header = ({headerText, subHeaderText}) => {
-  console.log(headerText, "        <-- articleList Header");
   return (
     <div>
       <h1>{headerText}</h1>

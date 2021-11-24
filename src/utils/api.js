@@ -6,7 +6,6 @@ const newsApi = axios.create({
 
 export const getTopics = async () => {
   const res = await newsApi.get("/topics");
-  console.log(res.data.topics, "        <-- topic return in axios");
   return res.data.topics;
 };
 
@@ -16,12 +15,13 @@ export const getArticles = async (topic, sort_by, order) => {
     return res.data.allArticles;
   } else {
     const topicQuery = topic ? `topic=${topic}` : "";
-    const sortQuery = sort_by ? `sort_by=${sort_by}` : "";
-    const orderQuery = order ? `order=${order}` : "";
+    const sortQuery = sort_by ? `&sort_by=${sort_by}` : "";
+    const orderQuery = order ? `&order=${order}` : "";
 
     const res = await newsApi.get(
       `/articles?${topicQuery}${sortQuery}${orderQuery}`
     );
+    console.log(res, "        <-- res in api");
     return res.data.allArticles;
   }
 };

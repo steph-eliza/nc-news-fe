@@ -6,9 +6,7 @@ import SortForm from "./SortForm";
 
 const ArticleList = ({topics}) => {
   // takes the parameter from the end of the url
-  console.log(useParams(), "        <-- useParams");
   const {topic_slug} = useParams();
-  console.log(topic_slug, "       <-- topicslug in articles");
   const [allArticles, setAllArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -24,11 +22,6 @@ const ArticleList = ({topics}) => {
           setAllArticles(articleData);
           // fetching finished
           setIsLoading(false);
-
-          console.log(
-            articleData,
-            "        <-- articleData return in useEffect"
-          );
         } catch (err) {
           console.log(err);
         }
@@ -41,11 +34,6 @@ const ArticleList = ({topics}) => {
           setAllArticles(articleData);
           // fetching finished
           setIsLoading(false);
-
-          console.log(
-            articleData,
-            "        <-- articleData return in useEffect"
-          );
         } catch (err) {
           console.log(err);
         }
@@ -53,16 +41,13 @@ const ArticleList = ({topics}) => {
     }
   }, [topic_slug]);
 
-  console.log(allArticles, "        <-- allArticles after GET");
-
-  if (isLoading) return <p>loading ...</p>;
   // page return
+  if (isLoading) return <p>loading ...</p>;
   if (!topic_slug) {
-    // populate in case of no filtering
+    // populate in case of no filtering, all topics
     return (
       <div>
         <Header headerText="All Topics" />
-        {/* add description h2 */}
         <SortForm setAllArticles={setAllArticles} />
         {allArticles.map((article) => {
           return (
@@ -78,10 +63,19 @@ const ArticleList = ({topics}) => {
       </div>
     );
   } else {
+    // creating an individual topic object based on the currently examined object to get the description programmatically
+    const topicObj = topics.find((topic) => {
+      return topic.slug === topic_slug;
+    });
+    // could just assign straight away, but theoretically you might run into issues of a topic returning after articles
+    // async is only 'synchronous' in its own scope so it _could_ happen allegedly
+    let topicDescription = "";
+    if (topicObj) topicDescription = topicObj.description;
+
     return (
       // populate in case of a specific picked topic
       <div className="articleList">
-        <Header headerText={topic_slug} subHeaderText={topics.description} />
+        <Header headerText={topic_slug} subHeaderText={topicDescription} />
         {/* add description h2 */}
         <SortForm setAllArticles={setAllArticles} />
         {allArticles.map((article) => {
