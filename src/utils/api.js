@@ -38,9 +38,9 @@ export const getArticleContent = async (articleID) => {
   return res.data.article;
 };
 
-export const postUpdateVotes = async (articleID, votesToChange) => {
-  const voteChange = {incVotes: votesToChange};
+export const patchUpdateVotes = async (articleID, votesToChange) => {
+  const voteChange = {inc_votes: votesToChange};
 
-  const res = await newsApi.post(`/articles/${articleID}`, voteChange);
+  const res = await newsApi.patch(`/articles/${articleID}`, voteChange);
   return res.data.id;
 };

@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {useParams} from "react-router";
-import {Link} from "react-router-dom";
 import {getAllArticles} from "../utils/api";
+import ArticleTile from "./ArticleTile";
 import Header from "./Header";
 import SortForm from "./SortForm";
 
@@ -50,20 +50,10 @@ const ArticleList = ({topics}) => {
       <div>
         <Header headerText="All Topics" />
         <SortForm setAllArticles={setAllArticles} />
-        {allArticles.map((article) => {
-          return (
-            <div className="articleTile" key={article.article_id}>
-              <Link to={`/articles/article/${article.article_id}`}>
-                <h3>{article.title}</h3>
-              </Link>
-              <p>Topic: {article.topic}</p>
-              <p>By: {article.author}</p>
-              <p>Votes: {article.votes}</p>
-              <p>Posted: {article.created_at}</p>
-              <p>Comments: {article.comment_count}</p>
-            </div>
-          );
-        })}
+        <ArticleTile
+          allArticles={allArticles}
+          setAllArticles={setAllArticles}
+        />
       </div>
     );
   } else {
@@ -82,21 +72,14 @@ const ArticleList = ({topics}) => {
         <Header headerText={topic_slug} subHeaderText={topicDescription} />
         {/* add description h2 */}
         <SortForm setAllArticles={setAllArticles} />
-        {allArticles.map((article) => {
-          return (
-            <div className="articleTile" key={article.article_id}>
-              <Link to={`/articles/article/${article.article_id}`}>
-                <h3>{article.title}</h3>
-              </Link>
-              <p>Topic: {article.topic}</p>
-              <p>By: {article.author}</p>
-              <p>Votes: {article.votes}</p>
-              <p>Posted: {article.created_at}</p>
-              <p>Comments: {article.comment_count}</p>
-            </div>
-          );
-        })}
-        <p></p>
+        <ArticleTile
+          allArticles={allArticles}
+          setAllArticles={setAllArticles}
+        />
+
+        {/* 
+        make article a votes component
+      */}
       </div>
     );
   }

@@ -4,6 +4,7 @@ import {useState} from "react/cjs/react.development";
 import {getArticleContent} from "../utils/api";
 import Header from "./Header";
 import PostForm from "./PostForm";
+import Votes from "./Votes";
 
 const ArticlePage = () => {
   const {article_id} = useParams();
@@ -26,7 +27,7 @@ const ArticlePage = () => {
       <p>By: {articleData.author}</p>
       <p>Posted: {articleData.created_at}</p>
       <p>{articleData.body}</p>
-      <p>Votes: {articleData.votes}</p>
+      <Votes votesOnArticle={articleData.votes} articleID={article_id} />
       <PostForm />
     </div>
   );
