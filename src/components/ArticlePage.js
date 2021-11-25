@@ -2,6 +2,7 @@ import {useEffect} from "react";
 import {useParams} from "react-router";
 import {useState} from "react/cjs/react.development";
 import {getArticleContent} from "../utils/api";
+import CommentTile from "./CommentTile";
 import Header from "./Header";
 import PostForm from "./PostForm";
 import Votes from "./Votes";
@@ -27,8 +28,9 @@ const ArticlePage = () => {
       <p>By: {articleData.author}</p>
       <p>Posted: {articleData.created_at}</p>
       <p>{articleData.body}</p>
-      <Votes votesOnArticle={articleData.votes} articleID={article_id} />
-      <PostForm articleID={article_id} />
+      <Votes votesOnArticle={articleData.votes} article_id={article_id} />
+      <PostForm article_id={article_id} />
+      <CommentTile article_id={article_id} />
     </div>
   );
 };

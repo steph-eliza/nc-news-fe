@@ -6,6 +6,7 @@ const newsApi = axios.create({
 
 export const getTopics = async () => {
   const res = await newsApi.get("/topics");
+
   return res.data.topics;
 };
 
@@ -32,20 +33,27 @@ export const getArticlesButSimpler = (topic, sort_by, order) => {
   });
 };
 
-export const getArticleContent = async (articleID) => {
-  const res = await newsApi.get(`/articles/${articleID}`);
+export const getArticleContent = async (article_id) => {
+  const res = await newsApi.get(`/articles/${article_id}`);
+
   return res.data.article;
 };
 
-export const patchUpdateVotes = async (articleID, votesToChange) => {
+export const getArticleComments = async (article_id) => {
+  const res = await newsApi(`/articles/${article_id}/comments`);
+
+  return res.data.comments;
+};
+
+export const patchUpdateVotes = async (article_id, votesToChange) => {
   const voteChange = {inc_votes: votesToChange};
 
-  const res = await newsApi.patch(`/articles/${articleID}`, voteChange);
+  const res = await newsApi.patch(`/articles/${article_id}`, voteChange);
   return res.data.id;
 };
 
 export const postCommentToArticle = async (
-  articleID,
+  article_id,
   username,
   commentText
 ) => {
@@ -54,9 +62,9 @@ export const postCommentToArticle = async (
     body: commentText,
   };
 
-  console.log(`/articles/${articleID}/comments`, "/articles/34/comments");
+  console.log(`/articles/${article_id}/comments`, "/articles/34/comments");
   const res = await newsApi.post(
-    `/articles/${articleID}/comments`,
+    `/articles/${article_id}/comments`,
     commentToPost
   );
   return res;

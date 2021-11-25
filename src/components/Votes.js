@@ -1,13 +1,13 @@
 import {useState} from "react/cjs/react.development";
 import {patchUpdateVotes} from "../utils/api";
 
-const Votes = ({votesOnArticle, articleID}) => {
+const Votes = ({votesOnArticle, article_id}) => {
   const [votes, setVotes] = useState(votesOnArticle);
 
   const handleClick = (voteMod) => {
     (async () => {
       try {
-        patchUpdateVotes(articleID, voteMod);
+        patchUpdateVotes(article_id, voteMod);
       } catch (err) {
         console.log(err);
       }
