@@ -28,7 +28,7 @@ const ArticlePage = () => {
       <p>Posted: {articleData.created_at}</p>
       <p>{articleData.body}</p>
       <Votes votesOnArticle={articleData.votes} articleID={article_id} />
-      <PostForm />
+      <PostForm articleID={article_id} />
     </div>
   );
 };

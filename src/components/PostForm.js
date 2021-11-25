@@ -1,11 +1,17 @@
+import {useContext} from "react";
 import {useState} from "react/cjs/react.development";
+import {UserContext} from "../contexts/userContext";
+import {postCommentToArticle} from "../utils/api";
 
-const PostForm = () => {
+const PostForm = ({articleID}) => {
+  const {currentUser} = useContext(UserContext);
   const [inputState, setInputState] = useState("");
 
   const handleSubmission = (event) => {
     event.preventDefault();
-    console.log(event);
+    console.log(articleID, currentUser.username, inputState);
+    postCommentToArticle(articleID, currentUser.username, inputState);
+    setInputState("");
   };
 
   return (
@@ -13,21 +19,12 @@ const PostForm = () => {
       <form onSubmit={(event) => handleSubmission(event)}>
         <fieldset>
           <legend>Add a comment :</legend>
-          <label htmlFor="username" />
-          <input
-            id="username"
-            name="username"
-            type="text"
-            onChange={(event) => {
-              setInputState(event.target.value);
-            }}
-            value={inputState}
-          />
           <label htmlFor="comment_body" />
-          <input
+          <textarea
             id="comment_body"
             name="comment_body"
-            type="text"
+            rows="8"
+            cols="60"
             onChange={(event) => {
               setInputState(event.target.value);
             }}
