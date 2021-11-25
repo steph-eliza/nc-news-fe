@@ -1,6 +1,6 @@
 import {useParams} from "react-router";
 import {useState} from "react/cjs/react.development";
-import {getArticles} from "../utils/api";
+import {getAllArticles} from "../utils/api";
 
 const SortForm = ({setAllArticles}) => {
   const {topic_slug} = useParams();
@@ -20,7 +20,7 @@ const SortForm = ({setAllArticles}) => {
       // send to axios
       // return a new list of articles from the query
       (async () => {
-        const sortedArticles = await getArticles(
+        const sortedArticles = await getAllArticles(
           topic_slug,
           sortSelection,
           orderSelection

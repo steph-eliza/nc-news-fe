@@ -9,7 +9,7 @@ export const getTopics = async () => {
   return res.data.topics;
 };
 
-export const getArticles = async (topic, sort_by, order) => {
+export const getAllArticles = async (topic, sort_by, order) => {
   if (!topic && !sort_by && !order) {
     const res = await newsApi.get("/articles");
     return res.data.allArticles;
@@ -30,4 +30,17 @@ export const getArticlesButSimpler = (topic, sort_by, order) => {
     console.log(res);
     return res.data.allArticles;
   });
+};
+
+export const getArticleContent = async (articleID) => {
+  const res = await newsApi.get(`/articles/${articleID}`);
+  console.log(res);
+  return res.data.article;
+};
+
+export const postUpdateVotes = async (articleID, votesToChange) => {
+  const voteChange = {incVotes: votesToChange};
+
+  const res = await newsApi.post(`/articles/${articleID}`, voteChange);
+  return res.data.id;
 };

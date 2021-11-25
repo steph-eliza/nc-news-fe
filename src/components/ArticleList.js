@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {useParams} from "react-router";
-import {getArticles} from "../utils/api";
+import {Link} from "react-router-dom";
+import {getAllArticles} from "../utils/api";
 import Header from "./Header";
 import SortForm from "./SortForm";
 
@@ -18,7 +19,7 @@ const ArticleList = ({topics}) => {
       // "All Articles"
       (async () => {
         try {
-          const articleData = await getArticles();
+          const articleData = await getAllArticles();
           setAllArticles(articleData);
           // fetching finished
           setIsLoading(false);
@@ -30,7 +31,7 @@ const ArticleList = ({topics}) => {
       // if there actually is a specific topic
       (async () => {
         try {
-          const articleData = await getArticles(topic_slug);
+          const articleData = await getAllArticles(topic_slug);
           setAllArticles(articleData);
           // fetching finished
           setIsLoading(false);
@@ -41,10 +42,10 @@ const ArticleList = ({topics}) => {
     }
   }, [topic_slug]);
 
-  // page return
+  // page return, loading pattern
   if (isLoading) return <p>loading ...</p>;
   if (!topic_slug) {
-    // populate in case of no filtering, all topics
+    // creating all topics, no specific nav category picked
     return (
       <div>
         <Header headerText="All Topics" />
@@ -52,7 +53,9 @@ const ArticleList = ({topics}) => {
         {allArticles.map((article) => {
           return (
             <div className="articleTile" key={article.article_id}>
-              <h3>{article.title}</h3>
+              <Link to={`/articles/article/${article.article_id}`}>
+                <h3>{article.title}</h3>
+              </Link>
               <p>Topic: {article.topic}</p>
               <p>By: {article.author}</p>
               <p>Votes: {article.votes}</p>
@@ -82,7 +85,9 @@ const ArticleList = ({topics}) => {
         {allArticles.map((article) => {
           return (
             <div className="articleTile" key={article.article_id}>
-              <h3>{article.title}</h3>
+              <Link to={`/articles/article/${article.article_id}`}>
+                <h3>{article.title}</h3>
+              </Link>
               <p>Topic: {article.topic}</p>
               <p>By: {article.author}</p>
               <p>Votes: {article.votes}</p>

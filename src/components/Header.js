@@ -1,8 +1,8 @@
-const Header = ({headerText, subHeaderText}) => {
+const Header = ({headerText, subHeaderText = ""}) => {
   return (
     <div>
       <h1>{headerText}</h1>
-      <h2>{subHeaderText ? subHeaderText : ""}</h2>
+      <h2>{subHeaderText}</h2>
     </div>
   );
 };

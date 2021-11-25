@@ -18,7 +18,7 @@ function App() {
           path="/articles/:topic_slug"
           element={<ArticleList topics={topics} />}
         />
-        <Route path="/articles/:article_id" element={<ArticlePage />} />
+        <Route path="/articles/article/:article_id" element={<ArticlePage />} />
       </Routes>
     </div>
   );
