@@ -5,7 +5,13 @@ const Votes = ({votesOnArticle, articleID}) => {
   const [votes, setVotes] = useState(votesOnArticle);
 
   const handleClick = (voteMod) => {
-    patchUpdateVotes(articleID, voteMod);
+    (async () => {
+      try {
+        patchUpdateVotes(articleID, voteMod);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
     setVotes((prevVote) => {
       const newVote = prevVote + voteMod;
       return newVote;
