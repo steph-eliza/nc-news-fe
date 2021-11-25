@@ -34,7 +34,6 @@ export const getArticlesButSimpler = (topic, sort_by, order) => {
 
 export const getArticleContent = async (articleID) => {
   const res = await newsApi.get(`/articles/${articleID}`);
-  console.log(res);
   return res.data.article;
 };
 

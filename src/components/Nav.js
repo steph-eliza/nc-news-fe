@@ -1,9 +1,11 @@
 import {Link} from "react-router-dom";
-import {useEffect} from "react";
+import {useContext, useEffect} from "react";
 import {getTopics} from "../utils/api";
 import {useState} from "react/cjs/react.development";
+import {UserContext} from "../contexts/userContext";
 
 const Nav = ({topics, setTopics}) => {
+  const {currentUser} = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
 
   // fetch all topics from the api
@@ -21,6 +23,7 @@ const Nav = ({topics, setTopics}) => {
   if (isLoading) return <p> ... </p>;
   return (
     <nav>
+      <p>hello {currentUser.username}</p>
       <Link to="/articles">All</Link>
       {topics.map((topic) => {
         return (

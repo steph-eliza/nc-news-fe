@@ -14,12 +14,23 @@ const PostForm = () => {
         <fieldset>
           <legend>Add a comment :</legend>
           <label htmlFor="username" />
-          <input id="username" name="username" type="text" value={inputState} />
+          <input
+            id="username"
+            name="username"
+            type="text"
+            onChange={(event) => {
+              setInputState(event.target.value);
+            }}
+            value={inputState}
+          />
           <label htmlFor="comment_body" />
           <input
             id="comment_body"
             name="comment_body"
             type="text"
+            onChange={(event) => {
+              setInputState(event.target.value);
+            }}
             value={inputState}
           />
           <input type="submit" value="Post Comment" />
