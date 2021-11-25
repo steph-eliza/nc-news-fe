@@ -43,3 +43,21 @@ export const patchUpdateVotes = async (articleID, votesToChange) => {
   const res = await newsApi.patch(`/articles/${articleID}`, voteChange);
   return res.data.id;
 };
+
+export const postCommentToArticle = async (
+  articleID,
+  username,
+  commentText
+) => {
+  const commentToPost = {
+    author: username,
+    body: commentText,
+  };
+
+  console.log(`/articles/${articleID}/comments`, "/articles/34/comments");
+  const res = await newsApi.post(
+    `/articles/${articleID}/comments`,
+    commentToPost
+  );
+  return res;
+};
