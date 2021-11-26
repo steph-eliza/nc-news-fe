@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom";
+import Votes from "./Votes";
 
 const ArticleTile = ({allArticles, setAllArticles}) => {
   return allArticles.map((article) => {
@@ -9,7 +10,7 @@ const ArticleTile = ({allArticles, setAllArticles}) => {
         </Link>
         <p>Topic: {article.topic}</p>
         <p>By: {article.author}</p>
-        <p>Votes: {article.votes}</p>
+        <Votes votesOnArticle={article.votes} article_id={article.article_id} />
         <p>Posted: {article.created_at}</p>
         <p>Comments: {article.comment_count}</p>
       </div>

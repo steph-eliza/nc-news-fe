@@ -70,16 +70,11 @@ const ArticleList = ({topics}) => {
       // populate in case of a specific picked topic
       <div className="articleList">
         <Header headerText={topic_slug} subHeaderText={topicDescription} />
-        {/* add description h2 */}
         <SortForm setAllArticles={setAllArticles} />
         <ArticleTile
           allArticles={allArticles}
           setAllArticles={setAllArticles}
         />
-
-        {/* 
-        make article a votes component
-      */}
       </div>
     );
   }
