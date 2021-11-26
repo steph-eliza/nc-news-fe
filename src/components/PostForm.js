@@ -3,17 +3,27 @@ import {useState} from "react/cjs/react.development";
 import {UserContext} from "../contexts/userContext";
 import {postCommentToArticle} from "../utils/api";
 
-const PostForm = ({article_id}) => {
+const PostForm = ({article_id, setCommentData}) => {
   const {currentUser} = useContext(UserContext);
   const [inputState, setInputState] = useState("");
   const [hasPosted, setHasPosted] = useState(false);
 
   const handleSubmission = (event) => {
     event.preventDefault();
-    console.log(article_id, currentUser.username, inputState);
-    postCommentToArticle(article_id, currentUser.username, inputState);
     setInputState("");
     setHasPosted(true);
+    (async () => {
+      const newPost = await postCommentToArticle(
+        article_id,
+        currentUser.username,
+        inputState
+      );
+      setCommentData((prevCommentData) => {
+        const newCommentData = [...prevCommentData];
+        newCommentData.push(newPost);
+        return newCommentData;
+      });
+    })();
   };
 
   return (

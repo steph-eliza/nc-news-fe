@@ -26,13 +26,6 @@ export const getAllArticles = async (topic, sort_by, order) => {
   }
 };
 
-export const getArticlesButSimpler = (topic, sort_by, order) => {
-  return newsApi.get("/articles").then((res) => {
-    console.log(res);
-    return res.data.allArticles;
-  });
-};
-
 export const getArticleContent = async (article_id) => {
   const res = await newsApi.get(`/articles/${article_id}`);
 
@@ -49,6 +42,7 @@ export const patchUpdateVotes = async (article_id, votesToChange) => {
   const voteChange = {inc_votes: votesToChange};
 
   const res = await newsApi.patch(`/articles/${article_id}`, voteChange);
+
   return res.data.id;
 };
 
@@ -62,10 +56,17 @@ export const postCommentToArticle = async (
     body: commentText,
   };
 
-  console.log(`/articles/${article_id}/comments`, "/articles/34/comments");
   const res = await newsApi.post(
     `/articles/${article_id}/comments`,
     commentToPost
   );
-  return res;
+
+  console.log(res.data.comment);
+  return res.data.comment;
+};
+
+export const deleteCommentOnArticle = async (comment_id) => {
+  const res = await newsApi.delete(`/comments/${comment_id}`);
+
+  return res.data;
 };

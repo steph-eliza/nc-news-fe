@@ -10,6 +10,7 @@ import Votes from "./Votes";
 const ArticlePage = () => {
   const {article_id} = useParams();
   const [articleData, setArticleData] = useState({});
+  const [commentData, setCommentData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -24,13 +25,17 @@ const ArticlePage = () => {
   if (isLoading) return <p>loading ...</p>;
   return (
     <div>
-      <Header headerText={`article ${article_id}`} />
+      <Header headerText={articleData.title} />
       <p>By: {articleData.author}</p>
       <p>Posted: {articleData.created_at}</p>
       <p>{articleData.body}</p>
       <Votes votesOnArticle={articleData.votes} article_id={article_id} />
-      <PostForm article_id={article_id} />
-      <CommentTile article_id={article_id} />
+      <PostForm article_id={article_id} setCommentData={setCommentData} />
+      <CommentTile
+        article_id={article_id}
+        commentData={commentData}
+        setCommentData={setCommentData}
+      />
     </div>
   );
 };
