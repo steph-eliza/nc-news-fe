@@ -25,18 +25,18 @@ const Votes = ({votesOnArticle, article_id, className}) => {
     <div className={className}>
       <button
         onClick={() => {
-          handleClick(1);
-        }}
-      >
-        +
-      </button>
-      <p>Votes: {votes}</p>
-      <button
-        onClick={() => {
           handleClick(-1);
         }}
       >
         -
+      </button>
+      <p>Votes: {votes}</p>
+      <button
+        onClick={() => {
+          handleClick(1);
+        }}
+      >
+        +
       </button>
     </div>
   );
