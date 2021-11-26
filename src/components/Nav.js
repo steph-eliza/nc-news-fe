@@ -23,7 +23,9 @@ const Nav = ({topics, setTopics}) => {
   return (
     <nav>
       <p className="userGreeting">hello {currentUser.username}</p>
-      <Link to="/articles">All</Link>
+      <Link to="/articles" className="topicNavLink">
+        All
+      </Link>
       {topics.map((topic) => {
         return (
           <Link

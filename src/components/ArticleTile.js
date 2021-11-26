@@ -7,13 +7,17 @@ const ArticleTile = ({allArticles}) => {
     return (
       <div className="articleTile" key={article.article_id}>
         <Link to={`/articles/article/${article.article_id}`}>
-          <h3>{article.title}</h3>
+          <h3 className="atTitle">{article.title}</h3>
         </Link>
-        <Votes votesOnArticle={article.votes} article_id={article.article_id} />
-        <p>In: {article.topic}</p>
-        <p>Comments: {article.comment_count}</p>
-        <p>By: {article.author}</p>
-        <p>Posted: {article.created_at}</p>
+        <Votes
+          votesOnArticle={article.votes}
+          article_id={article.article_id}
+          className="atVotes"
+        />
+        <p className="atTopic">In: {article.topic}</p>
+        <p className="atComments">Comments: {article.comment_count}</p>
+        <p className="atAuthor">By: {article.author}</p>
+        <p className="atCreated">Posted: {article.created_at}</p>
       </div>
     );
   });

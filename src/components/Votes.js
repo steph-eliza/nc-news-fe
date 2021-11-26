@@ -1,7 +1,7 @@
 import {useState} from "react/cjs/react.development";
 import {patchUpdateVotes} from "../utils/api";
 
-const Votes = ({votesOnArticle, article_id}) => {
+const Votes = ({votesOnArticle, article_id, className}) => {
   const [votes, setVotes] = useState(votesOnArticle);
 
   // functionality for vote inc / dec buttons; each button should do the same thing with a different number (+/-)
@@ -22,7 +22,7 @@ const Votes = ({votesOnArticle, article_id}) => {
 
   // component render, buttons pass a +1 or -1 to the same function
   return (
-    <div className="votes">
+    <div className={className}>
       <button
         onClick={() => {
           handleClick(1);
