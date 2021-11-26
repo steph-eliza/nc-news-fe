@@ -1,38 +1,35 @@
-import {useParams} from "react-router";
 import {useState} from "react/cjs/react.development";
 import {getAllArticles} from "../utils/api";
 
-const SortForm = ({setAllArticles}) => {
-  const {topic_slug} = useParams();
+const SortForm = ({setAllArticles, topic_slug}) => {
   const [isInvalidSelection, setIsInvalidSelection] = useState(false);
 
   const handleSubmit = (event) => {
-    // stop page refresh and get rid of the error message if there is one after multiple attempts
+    // stop page refresh and reset error message ( if there is one from previous attempts )
     event.preventDefault();
     setIsInvalidSelection(false);
 
+    // clarifying data from form fields
     const sortSelection = event.target[1].value;
     const orderSelection = event.target[2].value;
 
     if (sortSelection === "") {
       setIsInvalidSelection(true);
     } else {
-      // send to axios
-      // return a new list of articles from the query
+      // fields acceptably filled, send to axios return a new list of articles from the query
       (async () => {
         const sortedArticles = await getAllArticles(
           topic_slug,
           sortSelection,
           orderSelection
         );
-
-        // have the useEffect in ArticleList change and be forced to re-render
+        // have the state in ArticleList change and be forced to re-render
         setAllArticles(sortedArticles);
       })();
     }
   };
 
-  // conditional rendering for if the user doesn't pick a sort field
+  // conditional rendering for if the user doesn't pick a sort field, case isInvalidSelection
   if (isInvalidSelection) {
     return (
       <div className="sortForm">
@@ -61,7 +58,7 @@ const SortForm = ({setAllArticles}) => {
       </div>
     );
   } else {
-    // the user actually picked a thing gj 🎉
+    // the user actually picked a thing gj 🎉, case if things are on happy path
     return (
       <div className="sortForm">
         <form onSubmit={(event) => handleSubmit(event)}>

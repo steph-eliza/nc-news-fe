@@ -6,7 +6,7 @@ import Header from "./Header";
 import SortForm from "./SortForm";
 
 const ArticleList = ({topics}) => {
-  // takes the parameter from the end of the url
+  // useParams takes the parameter from the end of the url to determine what to get from the api
   const {topic_slug} = useParams();
   const [allArticles, setAllArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -16,24 +16,24 @@ const ArticleList = ({topics}) => {
     // reset loading each time a new thing is clicked otherwise it'll never bring up that feedback after the first time
     setIsLoading(true);
     if (!topic_slug) {
-      // "All Articles"
+      // case if "All Articles"
       (async () => {
         try {
           const articleData = await getAllArticles();
           setAllArticles(articleData);
-          // fetching finished
+          // fetching finished, exit loading pattern
           setIsLoading(false);
         } catch (err) {
           console.log(err);
         }
       })();
     } else {
-      // if there actually is a specific topic
+      // case if topic name selection
       (async () => {
         try {
           const articleData = await getAllArticles(topic_slug);
           setAllArticles(articleData);
-          // fetching finished
+          // fetching finished, exit loading pattern
           setIsLoading(false);
         } catch (err) {
           console.log(err);
@@ -42,14 +42,14 @@ const ArticleList = ({topics}) => {
     }
   }, [topic_slug]);
 
-  // page return, loading pattern
+  // component render, loading pattern
   if (isLoading) return <p>loading ...</p>;
   if (!topic_slug) {
-    // creating all topics, no specific nav category picked
+    // creating article tiles, case if "All Topics"
     return (
-      <div>
+      <div className="articleList">
         <Header headerText="All Topics" />
-        <SortForm setAllArticles={setAllArticles} />
+        <SortForm setAllArticles={setAllArticles} topic_slug={topic_slug} />
         <ArticleTile
           allArticles={allArticles}
           setAllArticles={setAllArticles}
@@ -57,24 +57,21 @@ const ArticleList = ({topics}) => {
       </div>
     );
   } else {
-    // creating an individual topic object based on the currently examined object to get the description programmatically
+    // self-searches topics based on topic_slug to get info to fill subheader
     const topicObj = topics.find((topic) => {
       return topic.slug === topic_slug;
     });
-    // could just assign straight away, but theoretically you might run into issues of a topic returning after articles
-    // async is only 'synchronous' in its own scope so it _could_ happen allegedly
+    // nb. could just assign straight away, but theoretically you might run into issues of a topic returning after articles
+    // async is only 'synchronous' in its own scope so it allegedly _could_ happen
     let topicDescription = "";
     if (topicObj) topicDescription = topicObj.description;
 
     return (
-      // populate in case of a specific picked topic
+      // creating article tiles, case if an individual topic is chosen
       <div className="articleList">
         <Header headerText={topic_slug} subHeaderText={topicDescription} />
         <SortForm setAllArticles={setAllArticles} />
-        <ArticleTile
-          allArticles={allArticles}
-          setAllArticles={setAllArticles}
-        />
+        <ArticleTile allArticles={allArticles} />
       </div>
     );
   }

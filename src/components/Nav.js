@@ -8,9 +8,8 @@ const Nav = ({topics, setTopics}) => {
   const {currentUser} = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
 
-  // fetch all topics from the api
   useEffect(() => {
-    // reset loading for each instance of topic rerendering
+    // loading pattern reset and api request for all topics
     setIsLoading(true);
     (async () => {
       const topicData = await getTopics();
@@ -19,15 +18,19 @@ const Nav = ({topics, setTopics}) => {
     })();
   }, [setTopics]);
 
-  // page return
+  // component rendering
   if (isLoading) return <p> ... </p>;
   return (
     <nav>
-      <p>hello {currentUser.username}</p>
+      <p className="userGreeting">hello {currentUser.username}</p>
       <Link to="/articles">All</Link>
       {topics.map((topic) => {
         return (
-          <Link to={`/articles/${topic.slug}`} key={topic.slug}>
+          <Link
+            to={`/articles/${topic.slug}`}
+            key={topic.slug}
+            className="topicNavLink"
+          >
             {`${topic.slug}`}
           </Link>
         );

@@ -4,6 +4,8 @@ import {patchUpdateVotes} from "../utils/api";
 const Votes = ({votesOnArticle, article_id}) => {
   const [votes, setVotes] = useState(votesOnArticle);
 
+  // functionality for vote inc / dec buttons; each button should do the same thing with a different number (+/-)
+  // optimistic rendering, tries to patch with voteMod, then updates the user-facing element anyway
   const handleClick = (voteMod) => {
     (async () => {
       try {
@@ -18,8 +20,9 @@ const Votes = ({votesOnArticle, article_id}) => {
     });
   };
 
+  // component render, buttons pass a +1 or -1 to the same function
   return (
-    <div>
+    <div className="votes">
       <button
         onClick={() => {
           handleClick(1);

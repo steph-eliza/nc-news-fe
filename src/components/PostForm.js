@@ -4,10 +4,12 @@ import {UserContext} from "../contexts/userContext";
 import {postCommentToArticle} from "../utils/api";
 
 const PostForm = ({article_id, setCommentData}) => {
+  // needs user context to have a username capable of making the post; back end only accepts post requests with an existing username and a message body
   const {currentUser} = useContext(UserContext);
   const [inputState, setInputState] = useState("");
   const [hasPosted, setHasPosted] = useState(false);
 
+  // prevent refresh on submit, hasPosted turns off the button after posting and gives feedback that it was successful
   const handleSubmission = (event) => {
     event.preventDefault();
     setInputState("");
@@ -18,6 +20,7 @@ const PostForm = ({article_id, setCommentData}) => {
         currentUser.username,
         inputState
       );
+      // page content rerenders because state gets changed after post request
       setCommentData((prevCommentData) => {
         const newCommentData = [...prevCommentData];
         newCommentData.push(newPost);
@@ -26,8 +29,9 @@ const PostForm = ({article_id, setCommentData}) => {
     })();
   };
 
+  // component render, submit button flips to inactive after posting
   return (
-    <div>
+    <div className="postForm">
       <form onSubmit={(event) => handleSubmission(event)}>
         <fieldset>
           <legend>Add a comment :</legend>

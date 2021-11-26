@@ -1,6 +1,6 @@
 const Header = ({headerText, subHeaderText = ""}) => {
   return (
-    <div>
+    <div className="headerContainer">
       <h1>{headerText}</h1>
       <h2>{subHeaderText}</h2>
     </div>

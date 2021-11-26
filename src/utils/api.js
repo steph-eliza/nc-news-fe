@@ -61,7 +61,6 @@ export const postCommentToArticle = async (
     commentToPost
   );
 
-  console.log(res.data.comment);
   return res.data.comment;
 };
 
