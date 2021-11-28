@@ -2,16 +2,25 @@ body {
   text-align: center;
   color: #ffe3fe;
   background-color: #1f142c;
+  height: 100vh;
 }
 
 /* 
+  darkest, bg
   #1f142c
+
+  tiles
   #440a67
+
+  highlights
   #93329E
+
+  extra highlights
   #B4AEE8
+  
+  text
   #FFE3FE
 */
-/* capitalise the first letter of topic list headers */
 
 /* link formatting override*/
 a {
@@ -20,28 +29,50 @@ a {
 }
 
 /* Nav: userGreeting, and Links */
+nav {
+  margin-left: 200px;
+  padding: 0px 200px 10px 0px;
+
+  border: double rgba(0, 255, 255, 0.3) 5px;
+  border-left: double cyan 5px;
+  border-bottom: double cyan 5px;
+  border-bottom-right-radius: 15px;
+  border-top-left-radius: 15px;
+
+  background-color: #440a67;
+}
 .topicNavLink {
   padding: 0px 10px 0px 10px;
   margin: 0px 10px 0px 10px;
   color: #ffe3fe;
-  border: solid black 2px;
-  background-color: #93329e;
-  border: solid black 2px;
+
+  border: solid rgba(0, 255, 255, 0.3) 2px;
+  border: solid rgba(0, 255, 255, 0.3) 2px;
   border-left: solid cyan 2px;
   border-bottom: solid cyan 2px;
   border-top-left-radius: 15px;
   border-bottom-right-radius: 15px;
+
+  background-color: #93329e;
 }
 .topicNavLink:hover {
   color: black;
+
   background-color: #b4aee8;
-  border-left: solid black 2px;
-  border-bottom: solid black 2px;
+  border-left: solid rgba(0, 0, 0, 0.4) 2px;
+  border-bottom: solid rgba(0, 0, 0, 0.4) 2px;
   border-right: solid cyan 2px;
   border-top: solid cyan 2px;
+
   box-shadow: -2px 0px 0px 0px #93329e inset;
 }
 
+.headerContainer > h1,
+.headerContainer > h2 {
+  font-family: Orbitron;
+  font-style: italic;
+  letter-spacing: 0.5rem;
+}
 /* articleList */
 .articleList {
   display: inline;
@@ -53,12 +84,16 @@ a {
   min-width: 800px;
   height: 150px;
   color: #ffe3fe;
-  border: solid black 2px;
+
+  border: solid rgba(0, 255, 255, 0.3) 3px;
   border-left: solid cyan 3px;
   border-bottom: solid cyan 3px;
   border-top-left-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: #93329e;
+  background-color: #440a67;
+
+  font-family: Orbitron;
+  font-style: italic;
 
   display: grid;
   grid-template: 50px 50px 50px / 4fr 1fr;
@@ -67,8 +102,11 @@ a {
     "topic comments"
     "author created";
 }
-.articleTile:hover {
-  background-color: #93329ee5;
+
+.articleTileWrapper {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
 }
 
 /* grid segments */
@@ -86,6 +124,24 @@ a {
   margin-left: 30px;
   width: 100%;
   height: 100%;
+  font-family: Orbitron;
+  font-style: italic;
+  letter-spacing: 0.2rem;
+}
+.atTitle:hover {
+  /* padding: 0px 5px 0px 5px; */
+  /* margin-right: -100px; */
+  color: black;
+
+  border-left: solid rgba(0, 0, 0, 0.4) 2px;
+  border-bottom: solid rgba(0, 0, 0, 0.4) 2px;
+  border-right: solid cyan 2px;
+  border-top: solid cyan 2px;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+
+  box-shadow: -2px 0px 0px 0px #93329e inset;
+  background-color: #b4aee8;
 }
 .atVotes {
   grid-area: votes;
