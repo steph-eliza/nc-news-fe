@@ -1,4 +1,4 @@
-import {useState} from "react/cjs/react.development";
+import {useState} from "react";
 import {patchUpdateVotes} from "../utils/api";
 
 const Votes = ({votesOnArticle, article_id, className}) => {

@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {useState} from "react/cjs/react.development";
+import {useState} from "react";
 import {UserContext} from "../contexts/userContext";
 import {postCommentToArticle} from "../utils/api";
 

@@ -1,6 +1,5 @@
 {
   "name": "nc-news-fe",
-  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

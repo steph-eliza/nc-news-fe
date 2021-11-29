@@ -1,4 +1,4 @@
-import {useState} from "react/cjs/react.development";
+import {useState} from "react";
 import {getAllArticles} from "../utils/api";
 
 const SortForm = ({setAllArticles, topic_slug}) => {

@@ -1,5 +1,5 @@
 import {Route, Routes} from "react-router";
-import {useState} from "react/cjs/react.development";
+import {useState} from "react";
 import "./App.css";
 import ArticleList from "./components/ArticleList";
 import ArticlePage from "./components/ArticlePage";

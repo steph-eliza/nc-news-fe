@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import {useContext, useEffect} from "react";
 import {getTopics} from "../utils/api";
-import {useState} from "react/cjs/react.development";
+import {useState} from "react";
 import {UserContext} from "../contexts/userContext";
 
 const Nav = ({topics, setTopics}) => {

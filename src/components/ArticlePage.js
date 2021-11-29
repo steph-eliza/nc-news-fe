@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 import {useParams} from "react-router";
-import {useState} from "react/cjs/react.development";
+import {useState} from "react";
 import {getArticleContent} from "../utils/api";
 import CommentTile from "./CommentTile";
 import Header from "./Header";
