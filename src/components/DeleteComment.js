@@ -1,6 +1,6 @@
 import {deleteCommentOnArticle} from "../utils/api";
 
-const Delete = ({comment_id, onClick}) => {
+const Delete = ({comment_id, onClick, className}) => {
   // optimistic rendering, updating the front end on click removes the potential to send a bunch of delete requests for the same item
   const handleDeletion = () => {
     console.log(comment_id);
@@ -14,8 +14,8 @@ const Delete = ({comment_id, onClick}) => {
 
   // component render
   return (
-    <div className="delete">
-      <button onClick={handleDeletion}>[x]</button>
+    <div className={className}>
+      <button onClick={handleDeletion}>{"delete"}</button>
     </div>
   );
 };

@@ -40,6 +40,9 @@ nav {
   border-top-left-radius: 15px;
 
   background-color: #440a67;
+
+  font-family: Orbitron;
+  font-style: italic;
 }
 .topicNavLink {
   padding: 0px 10px 0px 10px;
@@ -197,11 +200,70 @@ nav {
 }
 
 /* articlePage */
+.articleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 40px 0px 0px 20px;
+  width: 80vw;
+  min-width: 800px;
+  color: #ffe3fe;
+
+  border: solid rgba(0, 255, 255, 0.3) 3px;
+  border-left: solid cyan 3px;
+  border-bottom: solid cyan 3px;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: #440a67;
+}
+.articleSubHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0px;
+
+  font-family: Orbitron;
+  font-style: italic;
+}
+.subHeadContent {
+  margin: 0px;
+  padding: 0px 10px 20px 10px;
+}
+.messageBody {
+  margin: 0px 20px 0px 20px;
+
+  text-align: left;
+  font-family: Orbitron;
+}
+.articleVotes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
+  width: auto;
+}
+.articleVotes > button {
+  margin: 0px 10px 0px 10px;
+}
+
+/* post form */
+.postForm {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  min-width: 800px;
+  margin: 0px 0px 0px 20px;
+}
+.postForm > form > fieldset {
+  display: flex;
+  flex-direction: column;
+}
+/* comments */
 .commentTile {
   margin: 4px 0px 0px 20px;
   width: 80vw;
   min-width: 800px;
-  height: 150px;
+  height: auto;
   color: #ffe3fe;
   border: solid black 2px;
   border-left: solid cyan 3px;
@@ -209,4 +271,46 @@ nav {
   border-top-left-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #93329e;
+
+  font-family: Orbitron;
+  font-style: italic;
+
+  display: grid;
+  grid-template: 1fr 2fr 1fr / 1fr 5fr 1fr;
+  grid-template-areas:
+    "by posted posted"
+    "body body body"
+    "delete delete vote";
+}
+/* grid segments */
+.commentBy {
+  grid-area: by;
+  margin: 0px;
+}
+.commentPosted {
+  grid-area: posted;
+  margin: 0px;
+  text-align: left;
+}
+.commentMessageBody {
+  grid-area: body;
+  width: 95%;
+  height: auto;
+  padding: 0px 0px 0px 20px;
+  text-align: left;
+
+  font-style: normal;
+}
+.commentVote {
+  grid-area: vote;
+  margin: 0px;
+}
+.commentDelete {
+  grid-area: delete;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: right;
+  margin: 0px;
+  width: auto;
 }

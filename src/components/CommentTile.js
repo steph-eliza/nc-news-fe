@@ -22,8 +22,9 @@ const CommentTile = ({article_id, commentData, setCommentData}) => {
     if (comment.author === currentUser.username) {
       return (
         <div className="commentTile" key={comment.comment_id}>
-          <p>By: {comment.author}</p>
-          <p>Posted: {comment.created_at}</p>
+          <p className="commentBy">By: {comment.author}</p>
+          <p className="commentPosted">Posted: {comment.created_at}</p>
+          <p className="commentMessageBody">{comment.body}</p>
           <Delete
             comment_id={comment.comment_id}
             onClick={() => {
@@ -31,19 +32,19 @@ const CommentTile = ({article_id, commentData, setCommentData}) => {
                 data.filter((post) => post.comment_id !== comment.comment_id)
               );
             }}
+            className="commentDelete"
           />
-          <p className="messageBody">{comment.body}</p>
-          <p>Votes: {comment.votes}</p>
+          <p className="commentVote">Votes: {comment.votes}</p>
         </div>
       );
     } else {
       // comments not posted by currentUser
       return (
         <div className="commentTile" key={comment.comment_id}>
-          <p>By: {comment.author}</p>
-          <p>Posted: {comment.created_at}</p>
-          <p className="messageBody">{comment.body}</p>
-          <p>Votes: {comment.votes}</p>
+          <p className="commentBy">By: {comment.author}</p>
+          <p className="commentPosted">Posted: {comment.created_at}</p>
+          <p className="commentMessageBody">{comment.body}</p>
+          <p className="commentVote">Votes: {comment.votes}</p>
         </div>
       );
     }

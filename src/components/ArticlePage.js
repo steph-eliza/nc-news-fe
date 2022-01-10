@@ -27,14 +27,20 @@ const ArticlePage = () => {
   if (isLoading) return <p>loading ...</p>;
   return (
     <div className="articlePage">
-      <Header headerText={articleData.title} />
-      <span className="articleSubHeader">
-        <p>By: {articleData.author}</p>
-        <p>In: {articleData.topic}</p>
-        <p>Posted: {articleData.created_at}</p>
-      </span>
-      <p className="messageBody">{articleData.body}</p>
-      <Votes votesOnArticle={articleData.votes} article_id={article_id} />
+      <div className="articleContainer">
+        <Header headerText={articleData.title} />
+        <span className="articleSubHeader">
+          <p className="subHeadContent">By: {articleData.author}</p>
+          <p className="subHeadContent">In: {articleData.topic}</p>
+          <p className="subHeadContent">Posted: {articleData.created_at}</p>
+        </span>
+        <p className="messageBody">{articleData.body}</p>
+        <Votes
+          votesOnArticle={articleData.votes}
+          article_id={article_id}
+          className={"articleVotes"}
+        />
+      </div>
       <PostForm article_id={article_id} setCommentData={setCommentData} />
       <CommentTile
         article_id={article_id}
