@@ -76,10 +76,25 @@ nav {
   font-style: italic;
   letter-spacing: 0.5rem;
 }
+
 /* articleList */
 .articleList {
   display: inline;
   justify-content: left;
+}
+.sortForm {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  min-width: 800px;
+  margin: 0px 0px 0px 20px;
+}
+.sortForm > form > fieldset {
+  display: flex;
+  flex-direction: row;
+}
+.sortForm > form > fieldset > select {
+  margin: 0px 10px 0px 10px;
 }
 .articleTile {
   margin: 4px 0px 0px 20px;
@@ -111,7 +126,6 @@ nav {
   flex-direction: column;
   overflow: scroll;
 }
-
 /* grid segments */
 .articleTitle > a {
   padding-top: 100px;
